@@ -21,10 +21,7 @@ class LoadTest extends TestCase
         parent::tearDown();
     }
 
-    /**
-     * @test
-     */
-    public function it_merges_default_and_target_locales()
+    public function test_it_merges_default_and_target_locales()
     {
         $en = [
             'simple' => 'Simple',
@@ -51,10 +48,7 @@ class LoadTest extends TestCase
         $this->assertEquals($expected, $this->fileLoader->load('es', 'group', 'name'));
     }
 
-    /**
-     *  @testLoadTest
-     */
-    public function it_returns_translation_code_if_text_not_found()
+    public function test_it_returns_translation_code_if_text_not_found()
     {
         $this->assertEquals('auth.code', trans('auth.code'));
     }

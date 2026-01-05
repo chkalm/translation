@@ -15,11 +15,7 @@ class LoadTest extends TestCase
         $translationsPath            = realpath(__DIR__ . '/../lang');
         $this->command               = new FileLoaderCommand($this->languageRepository, $this->translationRepository, \App::make('files'), $translationsPath, 'en');
     }
-
-    /**
-     * @test
-     */
-    public function it_loads_files_into_database()
+    public function test_it_loads_files_into_database()
     {
         $file = realpath(__DIR__ . '/../lang/en/auth.php');
         $this->command->loadFile($file, 'en');
@@ -46,10 +42,7 @@ class LoadTest extends TestCase
         $this->assertEquals('Simple', $translations[2]->text);
     }
 
-    /**
-     * @test
-     */
-    public function it_loads_files_in_subdirectories_into_database()
+    public function test_it_loads_files_in_subdirectories_into_database()
     {
         $directory = realpath(__DIR__ . '/../lang/es');
         $this->command->loadDirectory($directory, 'es');
@@ -70,10 +63,7 @@ class LoadTest extends TestCase
         $this->assertEquals('Identifícate', $translations[1]->text);
     }
 
-    /**
-     * @test
-     */
-    public function it_doesnt_load_undefined_locales()
+    public function test_it_doesnt_load_undefined_locales()
     {
         $this->command->handle();
         $locales = $this->translationRepository->all()->pluck('locale')->toArray();
@@ -82,10 +72,7 @@ class LoadTest extends TestCase
         $this->assertFalse(in_array('ca', $locales));
     }
 
-    /**
-     * @test
-     */
-    public function it_loads_overwritten_vendor_files_correctly()
+    public function test_it_loads_overwritten_vendor_files_correctly()
     {
         $this->command->handle();
 
@@ -97,10 +84,7 @@ class LoadTest extends TestCase
         $this->assertEquals('Vendor text', $translations->where('locale', 'en')->where('namespace', 'package')->where('group', 'example')->where('item', 'entry')->first()->text);
     }
 
-    /**
-     *  @test
-     */
-    public function it_doesnt_overwrite_locked_translations()
+    public function test_it_doesnt_overwrite_locked_translations()
     {
         $trans = $this->translationRepository->create([
             'locale'    => 'en',
@@ -131,10 +115,7 @@ class LoadTest extends TestCase
         $this->assertEquals('Login', $translations[1]->text);
     }
 
-    /**
-     *  @test
-     */
-    public function it_doesnt_load_empty_arrays()
+    public function test_it_doesnt_load_empty_arrays()
     {
         $file = realpath(__DIR__ . '/../lang/en/empty.php');
         $this->command->loadFile($file, 'en');

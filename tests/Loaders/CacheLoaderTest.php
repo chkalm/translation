@@ -22,20 +22,14 @@ class CacheLoaderTest extends TestCase
         parent::tearDown();
     }
 
-    /**
-     * @test
-     */
-    public function it_returns_from_cache_if_hit()
+    public function test_it_returns_from_cache_if_hit()
     {
         $this->cache->shouldReceive('has')->with('en', 'group', 'name')->once()->andReturn(true);
         $this->cache->shouldReceive('get')->with('en', 'group', 'name')->once()->andReturn('cache hit');
         $this->assertEquals('cache hit', $this->cacheLoader->loadSource('en', 'group', 'name'));
     }
 
-    /**
-     * @test
-     */
-    public function it_returns_from_fallback_and_stores_in_cache_if_miss()
+    public function test_it_returns_from_fallback_and_stores_in_cache_if_miss()
     {
         $this->cache->shouldReceive('has')->with('en', 'group', 'name')->once()->andReturn(false);
         $this->fallback->shouldReceive('load')->with('en', 'group', 'name')->once()->andReturn('cache miss');

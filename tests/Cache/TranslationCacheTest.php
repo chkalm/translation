@@ -10,43 +10,28 @@ class TranslationCacheTest extends TestCase
         parent::setUp();
     }
 
-    /**
-     * @test
-     */
     public function test_has_with_no_entry()
     {
         $this->assertFalse(\TranslationCache::has('en', 'namespace', 'group'));
     }
 
-    /**
-     * @test
-     */
     public function test_has_returns_true_if_entry()
     {
         \TranslationCache::put('en', 'namespace', 'group', 'value', 60);
         $this->assertTrue(\TranslationCache::has('en', 'namespace', 'group'));
     }
 
-    /**
-     * @test
-     */
     public function test_get_returns_null_if_empty()
     {
         $this->assertNull(\TranslationCache::get('en', 'namespace', 'group'));
     }
 
-    /**
-     * @test
-     */
     public function test_get_return_content_if_hit()
     {
         \TranslationCache::put('en', 'namespace', 'group', 'value', 60);
         $this->assertEquals('value', \TranslationCache::get('en', 'namespace', 'group'));
     }
 
-    /**
-     * @test
-     */
     public function test_flush_removes_just_the_group()
     {
         \TranslationCache::put('en', 'namespace', 'group', 'value', 60);
@@ -56,9 +41,6 @@ class TranslationCacheTest extends TestCase
         $this->assertEquals('valor', \TranslationCache::get('es', 'namespace', 'group'));
     }
 
-    /**
-     * @test
-     */
     public function test_flush_all_removes_all()
     {
         \TranslationCache::put('en', 'namespace', 'group', 'value', 60);

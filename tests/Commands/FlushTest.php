@@ -17,10 +17,7 @@ class FlushTest extends TestCase
         Mockery::close();
     }
 
-    /**
-     * @test
-     */
-    public function it_does_nothing_if_cache_disabled()
+    public function test_it_does_nothing_if_cache_disabled()
     {
         $this->cacheRepository->put('en', 'group', 'namespace', 'value', 60);
         $this->assertTrue($this->cacheRepository->has('en', 'group', 'namespace'));
@@ -30,10 +27,7 @@ class FlushTest extends TestCase
         $this->assertTrue($this->cacheRepository->has('en', 'group', 'namespace'));
     }
 
-    /**
-     * @test
-     */
-    public function it_flushes_the_cache()
+    public function test_it_flushes_the_cache()
     {
         $this->cacheRepository->put('en', 'group', 'namespace', 'value', 60);
         $this->assertTrue($this->cacheRepository->has('en', 'group', 'namespace'));

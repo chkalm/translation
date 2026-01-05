@@ -15,9 +15,6 @@ class RepositoryFactoryTest extends TestCase
         parent::setUp();
     }
 
-    /**
-     * @test
-     */
     public function test_returns_simple_cache_if_non_taggable_store()
     {
         $store = new FileStore(\App::make('files'), __DIR__ . '/temp');
@@ -25,9 +22,6 @@ class RepositoryFactoryTest extends TestCase
         $this->assertEquals(SimpleRepository::class, get_class($repo));
     }
 
-    /**
-     * @test
-     */
     public function test_returns_simple_cache_if_taggable_store()
     {
         $store = new ArrayStore;

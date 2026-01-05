@@ -22,10 +22,7 @@ class MixedLoaderTest extends TestCase
         parent::tearDown();
     }
 
-    /**
-     * @test
-     */
-    public function it_merges_file_and_db()
+    public function test_it_merges_file_and_db()
     {
         $file = [
             'in.file' => 'File',
@@ -45,10 +42,7 @@ class MixedLoaderTest extends TestCase
         $this->assertEquals($expected, $this->mixedLoader->load('en', 'group', 'name'));
     }
 
-    /**
-     * @test
-     */
-    public function it_cascades_namespaces()
+    public function test_it_cascades_namespaces()
     {
         $this->fileLoader->shouldReceive('addNamespace')->with('package', '/some/path/to/package')->andReturnNull();
         $this->dbLoader->shouldReceive('addNamespace')->with('package', '/some/path/to/package')->andReturnNull();

@@ -20,10 +20,7 @@ class FileLoaderTest extends TestCase
         parent::tearDown();
     }
 
-    /**
-     * @test
-     */
-    public function it_returns_from_file()
+    public function test_it_returns_from_file()
     {
         $data = [
             'simple' => 'Simple',

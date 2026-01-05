@@ -20,10 +20,7 @@ class DatabaseLoaderTest extends TestCase
         parent::tearDown();
     }
 
-    /**
-     * @test
-     */
-    public function it_returns_from_database()
+    public function test_it_returns_from_database()
     {
         $expected = [
             'simple' => 'text',
